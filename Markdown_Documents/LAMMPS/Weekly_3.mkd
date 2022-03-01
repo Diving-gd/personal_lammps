@@ -1,0 +1,31 @@
+### Choosing/Installing Graphical User Interface for lammps
+
+The GUI is important for relating information in an intuitive format.
+
+LAMMPS comes configured for multiple GUI's, I chose VMD for it's ease of use and well maintained repository.
+
+The VMD website includes detailed instructions on installation
+https://www.ks.uiuc.edu/Research/vmd/current/ig/ig.html
+
+with the tarball downloaded and unzipped you can build and install VMD in your lammps file path and this will allow lammps
+
+### Running simulation with VMD
+
+        python3 program.py in.lammps_input_file Nfrequency_of_dump Nnumber_of_timesteps
+
+
+### VMD and python
+
+VMD is run internal to python and utilized dump files to generate 3D images.
+
+The # of frames for a program is = Nnumber_of_timesteps/Nfrequency_of_dump
+
+### Next step
+
+Implement VMD **and** TKinkter in the same program
+
+### Screenshots
+
+![Screenshot from 2022-02-14 16-46-02](screenshots/Screenshot from 2022-02-14 16-46-02.png)
+![vmd_example](screenshots/vmd_example.png)
+![vmd_example_2](screenshots/vmd_example_2.png)
