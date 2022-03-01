@@ -1,0 +1,33 @@
+### Compute functionality
+
+The matplotlib library is included in the python and lammps installation and the documentation for lammps includes examples on how to integrate them.
+
+The goal is to display a graph from a set of dump files based on a compute placed in the lammps file.
+
+Compute statements are structured as the following:
+
+        compute ID group-ID style args
+
+The ID is a name given to the specific Compute function and this is what is tracked by matplotlib.
+
+### Matplotlib
+
+Using the instructions in the examples for viz_matplotlib I was able to create a file that can both read output as a matplotlib graph and change input value(Temp) of a lammps simulation.
+
+The graph can be manipulated interactively and the view changes automatically with new data.
+
+The input arguments for the new plot_combo.py file should be:
+
+        python3 plot_combo.py Nfreq Nsteps Compute_ID
+
+Where: Nfreq is the number of time steps per dump
+
+       Nsteps is the total number of steps to be completed
+
+       Compute_ID is the name of the compute function given by the user in the lammps file.
+
+### Output
+
+![Screenshot from 2022-03-01 12-54-37](../../Pictures/Screenshot from 2022-03-01 12-54-37.png)
+![Screenshot from 2022-03-01 12-54-51](../../Pictures/Screenshot from 2022-03-01 12-54-51.png)
+![Screenshot from 2022-03-01 12-55-17](../../Pictures/Screenshot from 2022-03-01 12-55-17.png)
