@@ -1,0 +1,22 @@
+Hi Axel,
+The problem needs to be paid attention and I found that someone put similar question in mailing list, only after I had asked the question.
+https://sourceforge.net/p/lammps/mailman/message/34812187/ 5
+Anyway, I have tried to use compute and variable command to get the dielectric constant for TIP4P pair style. The vector between O site and M site is related to H site vector.
+
+compute 11 h property/atom xu yu zu
+compute 10 o property/atom xu yu zu
+variable phi equal 0.14772952 #OMdistance/(OHlength*cos(HOHangle/2)*2)
+variable dmx atom 0.6791*c_11[1]-1.3582*(c_10[1]*(1-2*v_phi)+c_11[1]*v_phi)
+variable dmz atom 0.6791*c_11[2]-1.3582*(c_10[2]*(1-2*v_phi)+c_11[2]*v_phi)
+variable dmy atom 0.6791*c_11[3]-1.3582*(c_10[3]*(1-2*v_phi)+c_11[3]*v_phi)
+compute 12 all reduce sum v_dmx v_dmy v_dmz
+variable dm2 equal c_12[1]^2+c_12[2]^2+c_12[3]^2
+variable vvol equal vol
+variable vrou equal density
+fix fdm all ave/time 1 1 1 c_12[1] c_12[2] c_12[3] v_dm2 v_vvol v_vrou mode scalar ave running
+variable dc equal 1+(f_fdm[4]-f_fdm[1]^2-f_fdm[2]^2-f_fdm[3]^2)*(1.6022e-19*1e-10)^2/3.0/f_fdm[5]/1e-30/1.38065e-23/298/8.85418e-12
+
+
+Now I can obtain result closer to expected value. Thanks again!
+
+Zhang SW
